@@ -1,39 +1,45 @@
 # CampuSpase
 
-CampuSpase helps students find a study space before it fills up. It turns room-level Wi-Fi counts into an estimated number of people, removes known static devices, and lets students correct the estimate with a quick check-in.
+**CampuSpase** is a real-time campus space finder that helps university students locate open study rooms and predict seat availability before they walk across campus.
 
-## Run locally
+- **Track:** Smart Campus and City Tech
+- **Pitch Deck:** See [`PITCH.md`](PITCH.md) for the complete 5-page presentation structure, architecture diagram, and demo script ready for PDF export.
 
-Open `index.html` in a browser. No build step or package installation is required.
+---
 
-## Pitch preparation
+## How to Run Locally
 
-Use [PITCH.md](PITCH.md) for the five-slide story, a three-minute speaking plan, the exact demo route, and short jury answers.
+No build step, server, or package installation is required:
 
-## Working demo flows
+1. Clone or download this repository.
+2. Open `index.html` directly in any modern web browser (Chrome, Firefox, Safari, Edge).
 
-- Choose a building on the map or from the building menu.
-- Search for a quiet, powered, food-adjacent, group, or whiteboard-friendly space.
-- Compare each demo room's open-seat count, people estimate, and forecast.
-- Open the demo-space list and switch rooms.
-- Verify a room as empty, half-full, or nearly full. The displayed Wi-Fi estimate recalibrates immediately.
+---
 
-## How the estimate works
+## Features & Working Flows
 
-Each demo room has a Wi-Fi device count, a static-device allowance, and a calibrated devices-per-person ratio:
+- **Live Campus Map & Room Selector:** Click any building on the North Campus map (`Library`, `Hawthorne Hall`, `Student Union`, `STEM Center`) or use the dropdown to inspect live capacity.
+- **Natural-Language & Tag Search:** Search for specific needs (e.g., *"quiet room with outlets"*, *"food"*, *"whiteboard"*) or toggle quick amenity filters.
+- **Calibrated People Estimation:** Translates raw router telemetry into real human occupancy rather than raw device counts.
+- **Crowd Forecast:** Displays an interactive occupancy curve to warn students how many minutes remain before a room fills up.
+- **Student Check-In Loop:** Tap **"+ Verify a space"** to submit live crowd feedback (`Plenty of space`, `Half-full`, `Nearly full`), which immediately recalibrates the room's device-to-person baseline.
 
-`estimated people = (connected Wi-Fi devices - static room devices) / devices per person`
+---
 
-The prototype keeps these values in `app.js` and simulates small router changes every 18 seconds. It contains no real student, device, or location data.
+## How the Estimate Works
 
-## Production integration path
+Because a single student often connects multiple devices (laptop, phone, tablet) and rooms contain stationary hardware, CampuSpase calculates occupancy using:
 
-Replace the simulated room data with a backend endpoint that returns aggregated room-level estimates. Keep raw network identifiers on the server, maintain a reviewed list of static IoT devices, train each room's ratio from opt-in manual counts, and expose only occupancy, confidence, amenities, and short-term forecasts to the client.
+$$\text{Estimated People} = \frac{\text{Connected Wi-Fi Devices} - \text{Static Room Devices}}{\text{Devices per Person}}$$
 
-## Hackathon disclosure
+In this prototype (`app.js`), room telemetry updates automatically every 18 seconds to simulate live router feeds without collecting any personal or device identifiers.
 
-- Built with: HTML, CSS, and vanilla JavaScript.
-- Data source: simulated room-level Wi-Fi telemetry and manual verification input.
-- External UI dependency: Google Fonts loaded from the page.
-- Templates: none.
-- AI assistance: OpenAI Codex assisted with implementation. Add any other tools your team used before submitting.
+---
+
+## Tools, APIs, Templates & AI Assistants Used
+
+- **Core Stack:** HTML5, CSS3 (`styles.css`, `overrides.css`), and Vanilla JavaScript (`app.js`).
+- **External APIs / Assets:** [Google Fonts](https://fonts.google.com/) (`Fraunces`, `DM Sans`, `DM Mono`) and custom inline SVG graphics.
+- **Data:** Simulated room-level Wi-Fi telemetry and interactive crowdsourced check-ins.
+- **Templates:** None (custom UI and CSS architecture).
+- **AI Assistants:** OpenAI Codex and Gemini assisted with code implementation, documentation, and pitch structuring.
