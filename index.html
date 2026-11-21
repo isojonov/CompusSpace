@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#10231e" />
+    <title>CampuSpase — find your space</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="overrides.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a href="#" class="brand" aria-label="CampuSpase home">
+          <span class="brand-mark"><i></i><i></i><i></i><i></i></span>
+          <span>Campu<span>Spase</span></span>
+        </a>
+        <nav class="primary-nav" aria-label="Main navigation">
+          <a class="active" href="#spaces">Find a space</a>
+          <a href="#forecast">Forecast</a>
+          <a href="#how-it-works">How it works</a>
+        </nav>
+        <div class="topbar-actions">
+          <button class="icon-btn notification" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><b></b></button>
+          <button class="avatar" aria-label="Account menu">JM</button>
+        </div>
+      </header>
+
+      <main id="spaces">
+        <section class="hero">
+          <div class="eyebrow"><span class="pulse"></span> Campus is live <span class="divider"></span> Fri, Oct 18 · 1:32 PM</div>
+          <h1>Find your <em>space</em><br />before everyone else does.</h1>
+          <p class="hero-copy">See which rooms have space right now, or let CampuSpase find your best study spot in seconds.</p>
+
+          <div class="ask-bar" role="search">
+            <span class="ask-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3-1.4 5.6L5 10l5.6 1.4L12 17l1.4-5.6L19 10l-5.6-1.4L12 3Z"/><path d="m19 16-.7 2.3L16 19l2.3.7L19 22l.7-2.3L22 18l-2.3-.7L19 16Z"/></svg></span>
+            <input id="ai-search" type="search" autocomplete="off" placeholder="Try: “A quiet room with outlets near a vending machine”" aria-label="Ask CampuSpase" />
+            <button id="search-button" class="circle-arrow" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
+          </div>
+          <p id="search-result" class="search-result" aria-live="polite"></p>
+          <div class="quick-filters" aria-label="Quick filters">
+            <span>I'm looking for</span>
+            <button class="filter-chip" data-filter="quiet"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 9h6v6H9z"/><path d="M5 3v18M19 3v18"/></svg>Quiet</button>
+            <button class="filter-chip" data-filter="outlets"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v7M16 2v7M6 9h12v7a6 6 0 0 1-12 0V9Z"/></svg>Power outlets</button>
+            <button class="filter-chip" data-filter="vending"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h3M8 15h8M15 11h1"/></svg>Near food</button>
+          </div>
+        </section>
+
+        <section class="experience-grid" aria-label="Campus space finder">
+          <div class="map-card panel">
+            <div class="panel-topline">
+              <div>
+                <p class="section-label">Live campus map</p>
+                <h2>North Campus</h2>
+              </div>
+              <label class="sr-only" for="campus-select">Choose a campus space</label>
+              <select id="campus-select" class="campus-select" aria-label="Choose a campus space">
+                <option value="all">All buildings</option>
+                <option value="Library, Level 2">Library</option>
+                <option value="Hawthorne Hall">Hawthorne Hall</option>
+                <option value="Student Union">Student Union</option>
+                <option value="STEM Center">STEM Center</option>
+              </select>
+            </div>
+            <div class="campus-map" aria-label="Stylized map of North Campus">
+              <div class="map-label north-label">NORTH CAMPUS</div>
+              <div class="map-road r1"></div><div class="map-road r2"></div><div class="map-road r3"></div>
+              <div class="map-lawn lawn-one"></div><div class="map-lawn lawn-two"></div><div class="map-lawn lawn-three"></div>
+              <button class="building building-library selected" data-location="Library, Level 2"><span class="building-name">Library</span><span class="map-status good">Lots of space</span></button>
+              <button class="building building-hall" data-location="Hawthorne Hall"><span class="building-name">Hawthorne Hall</span><span class="map-status tight">Almost full</span></button>
+              <button class="building building-union" data-location="Student Union"><span class="building-name">Student Union</span><span class="map-status mid">Some space</span></button>
+              <button class="building building-stem" data-location="STEM Center"><span class="building-name">STEM Center</span><span class="map-status good">Lots of space</span></button>
+              <span class="map-pin pin-one"><i></i></span><span class="map-pin pin-two"><i></i></span>
+              <div class="map-legend"><span><i class="legend-dot plenty"></i>Plenty</span><span><i class="legend-dot limited"></i>Limited</span><span><i class="legend-dot busy"></i>Busy</span></div>
+            </div>
+            <div class="map-footer"><span><i class="live-dot"></i> Updated just now</span><button id="show-all">View all 4 demo spaces <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button></div>
+          </div>
+
+          <aside class="recommendation-card panel">
+            <div class="recommendation-head"><span class="sparkle"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3-1.4 5.6L5 10l5.6 1.4L12 17l1.4-5.6L19 10l-5.6-1.4L12 3Z"/></svg></span><span>YOUR BEST MATCH</span><button class="more-btn" aria-label="More recommendation options">•••</button></div>
+            <div id="match-illustration" class="match-illustration"><div class="window"><i></i><i></i><i></i><i></i></div><div class="plant"><i></i><i></i><i></i><i></i></div><div class="desk"><i></i><i></i></div><div class="chair"></div></div>
+            <div class="match-content">
+              <div class="match-title-row"><div><h2 id="match-title">Library · Level 2</h2><p id="match-subtitle">Silent Study Wing</p></div><span id="match-walk" class="walk-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 4a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 22l1-7-2 2-3-2 1-2 2 1 3-4 2 1-1 3 3 2v6h-2v-5l-3-2-1 7H8Z"/></svg>4 min walk</span></div>
+              <div class="capacity-row"><div><span id="capacity-text">28</span><small> open seats</small></div><strong id="capacity-percent">32% free</strong></div>
+              <div class="capacity-meter"><i id="capacity-bar" style="width:32%"></i></div>
+              <div class="people-estimate"><span><i class="live-dot"></i><strong id="people-estimate">~60 people</strong> estimated</span><span id="device-calibration">1.58 devices/person</span></div>
+              <div id="feature-tags" class="feature-tags"><span>Quiet</span><span>Outlets</span><span>Vending nearby</span></div>
+              <p class="ai-reason"><span>✦</span> <span id="ai-reason-text">You’ll have a calm 45-minute window before the afternoon rush.</span></p>
+              <div class="match-actions"><button id="route-button" class="primary-button">Get directions <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button><button id="save-button" class="save-button" aria-label="Save this space"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v17l-6-4-6 4V4Z"/></svg></button></div>
+            </div>
+          </aside>
+        </section>
+
+        <section id="forecast" class="forecast-section panel">
+          <div class="forecast-header"><div><p class="section-label">Plan ahead</p><h2>Will it be full when you get there?</h2></div><label class="forecast-location"><span class="sr-only">Choose forecast location</span><select id="forecast-location" aria-label="Choose forecast location"><option value="Library, Level 2">Library · Level 2</option><option value="Hawthorne Hall">Hawthorne Hall</option><option value="Student Union">Student Union</option><option value="STEM Center">STEM Center</option></select></label></div>
+          <div class="forecast-body">
+            <div class="chart-wrap"><div class="chart-y"><span>Busy</span><span>50%</span><span>Empty</span></div><div class="chart-area"><div class="grid-line line-top"></div><div class="grid-line line-mid"></div><div class="grid-line line-bottom"></div><svg viewBox="0 0 720 150" preserveAspectRatio="none" role="img" aria-label="Expected occupancy forecast"><defs><linearGradient id="fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#b7f34c" stop-opacity=".42"/><stop offset="1" stop-color="#b7f34c" stop-opacity="0"/></linearGradient></defs><path id="forecast-area" class="area-path" d="M0 132 C38 126 62 115 94 117 S144 130 182 105 S228 74 268 92 S328 76 361 54 S430 31 470 48 S523 67 557 42 S630 13 720 22 V150 H0Z"/><path id="forecast-line" class="line-path" d="M0 132 C38 126 62 115 94 117 S144 130 182 105 S228 74 268 92 S328 76 361 54 S430 31 470 48 S523 67 557 42 S630 13 720 22"/></svg><div class="now-line"><i></i><span>NOW</span></div></div><div class="chart-x"><span>1 PM</span><span>2 PM</span><span>3 PM</span><span>4 PM</span><span>5 PM</span><span>6 PM</span></div></div>
+            <div class="forecast-insight"><span class="forecast-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v2M12 19v2M5.6 5.6 7 7M17 17l1.4 1.4M3 12h2M19 12h2M5.6 18.4 7 17M17 7l1.4-1.4"/><circle cx="12" cy="12" r="5"/></svg></span><div><strong id="forecast-heading">Good timing.</strong><p id="forecast-copy">You have about <b>33 minutes</b> before this floor gets busy. Grab a seat by 2:05 PM.</p></div></div>
+          </div>
+        </section>
+
+        <section id="how-it-works" class="trust-strip"><div class="trust-copy"><span class="eyebrow"><span class="pulse"></span> Built for campus life</span><h2>Smarter than a device count.</h2><p>CampuSpase learns the difference between connected devices and real people, then combines it with student check-ins to keep every prediction grounded.</p></div><div class="trust-stats"><div><strong>92<sup>%</sup></strong><span>occupancy accuracy</span></div><div><strong>2.4k</strong><span>student verifications</span></div><div><strong>18</strong><span>spaces on campus</span></div></div></section>
+      </main>
+      <footer><a href="#" class="brand"><span class="brand-mark"><i></i><i></i><i></i><i></i></span><span>Campu<span>Spase</span></span></a><p>Make room for better days.</p><span>© 2025 CampuSpase</span></footer>
+    </div>
+
+    <button id="verify-fab" class="verify-fab"><span>+</span> Verify a space</button>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <dialog id="verify-dialog" class="verify-dialog"><button class="dialog-close" aria-label="Close verification">×</button><div class="dialog-icon">✦</div><p class="section-label">STUDENT CHECK-IN</p><h2>How busy is it here?</h2><p>Your quick check helps CampuSpase make better predictions for everyone.</p><div class="verify-options"><button data-check="empty"><span>●</span> Plenty of space<small>More than half the seats open</small></button><button data-check="half"><span>◐</span> Half-full<small>Some seats still available</small></button><button data-check="full"><span>●</span> Nearly full<small>A few or no seats left</small></button></div><small class="points-note">+25 campus points for a verified update</small></dialog>
+    <dialog id="spaces-dialog" class="verify-dialog spaces-dialog"><button class="dialog-close" aria-label="Close spaces">×</button><p class="section-label">DEMO SPACES</p><h2>Available right now</h2><p>Each count removes room devices such as printers and smartboards before estimating people.</p><div id="space-list" class="space-list"></div></dialog>
+    <script src="app.js"></script>
+  </body>
+</html>
